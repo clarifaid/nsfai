@@ -7,7 +7,6 @@ A simplified wrapper around Clarifai's NSFW detection.
 
  * Simplified result. (example.: `{ sfw: true, confidence: 0.9034682 }`);
  * Automatic data recognition, wheter it's Base64, a Data URL, or a URL.
- * 
 
 # Example
 
