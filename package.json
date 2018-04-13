@@ -1,6 +1,6 @@
 {
   "name": "nsfai",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A simplified wrapper around Clarifai's NSFW detection.",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,11 @@
     "type": "git",
     "url": "git+https://github.com/bbyjins/nsfai.git"
   },
+  "keywords": [
+    "ai",
+    "nsfw",
+    "filter"
+  ],
   "author": "skiilaa",
   "license": "MIT",
   "bugs": {
