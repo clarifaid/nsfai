@@ -24,8 +24,6 @@ class nsfai {
         });
     }
 
-    dataParser(data) { dataParser(data); }
-
     /**
      * Predict an image's NSFWness.
      * @param {string} data Your URL/Data URL/Base64 string
@@ -33,7 +31,7 @@ class nsfai {
      */
     predict(data, cb) {
         try {
-            this.app.models.predict(Clarifai.NSFW_MODEL, this.dataParser(data)).then(
+            this.app.models.predict(Clarifai.NSFW_MODEL, dataParser(data)).then(
                 function(response) {
                     cb(null, {
                         sfw: response.outputs[0].data.concepts[0].name === "sfw",

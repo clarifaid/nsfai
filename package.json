@@ -1,6 +1,6 @@
 {
   "name": "nsfai",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A simplified wrapper around Clarifai's NSFW detection.",
   "main": "index.js",
   "scripts": {
