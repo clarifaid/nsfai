@@ -1,5 +1,5 @@
 # nsfai
-![nsfai banner logo](https://bbyjins.skiilaa.me/img/nsfai/banner.png)
+![nsfai banner logo](https://bbyjins.skiilaa.me/img/nsfai/tinybanner.png)
 
 A simplified wrapper around Clarifai's NSFW detection.
 
