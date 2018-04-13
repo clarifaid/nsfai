@@ -1,4 +1,4 @@
-# nsfai
+# nsfai [![Codacy Badge](https://api.codacy.com/project/badge/Grade/804e9bc29c07420aa682247ed0618839)](https://www.codacy.com/app/moriczgergo/nsfai?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bbyjins/nsfai&amp;utm_campaign=Badge_Grade)  ![Discord](https://img.shields.io/discord/434373420814172169.svg)
 ![nsfai banner logo](https://bbyjins.skiilaa.me/img/nsfai/tinybanner.png)
 
 A simplified wrapper around Clarifai's NSFW detection.
