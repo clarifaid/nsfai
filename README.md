@@ -1,7 +1,7 @@
 # nsfai
 ![nsfai banner logo](https://bbyjins.skiilaa.me/img/nsfai/banner.png)
 
-A simplified wrapper around Clarifai's NSFW model.
+A simplified wrapper around Clarifai's NSFW detection.
 
 # Features
 
