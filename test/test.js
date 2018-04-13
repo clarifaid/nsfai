@@ -1,7 +1,7 @@
 var expect = require("chai").expect;
 
 var dataParser = require("../lib/dataparser");
-var testMIMEType = require('../lib/mimetype');
+var testMIMEType = require("../lib/mimetype");
 
 describe("dataParser", function() {
     it("should process a Base64 Data URL", function() {
