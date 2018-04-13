@@ -1,6 +1,7 @@
 var expect = require("chai").expect;
 
 var dataParser = require("../lib/dataparser");
+var testMIMEType = require('../lib/mimetype');
 
 describe("dataParser", function() {
     it("should process a Base64 Data URL", function() {
@@ -47,5 +48,19 @@ describe("dataParser", function() {
 
         var testFunct = function() { return dataParser(testData); };
         expect(testFunct).to.throw(TypeError);
+    });
+});
+
+describe("testMIMEType", function() {
+    it("should filter disallowed MIME types", function() {
+        expect(testMIMEType("image/gif")).to.equal(false);
+        expect(testMIMEType("video/mp4")).to.equal(false);
+        expect(testMIMEType("video/png")).to.equal(false); // a trick to check if only the 2nd part of the MIME type is being checked
+    });
+    it("should pass allowed MIME types", function() {
+        expect(testMIMEType("image/png")).to.equal(true);
+        expect(testMIMEType("image/jpeg")).to.equal(true);
+        expect(testMIMEType("image/tiff")).to.equal(true);
+        expect(testMIMEType("image/webp")).to.equal(true);
     });
 });
