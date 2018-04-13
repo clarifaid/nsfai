@@ -1,5 +1,5 @@
-const Clarifai = require('clarifai');
-var dataParser = require('./lib/dataparser');
+const Clarifai = require("clarifai");
+var dataParser = require("./lib/dataparser");
 
 /**
  * @typedef Prediction
@@ -18,17 +18,13 @@ class nsfai {
      * Create an nsfai instance
      * @param {string} apiKey Your Clarifai API key
      */
-    constructor(apiKey, testingMode) {
-        if (!apiKey && !testingMode) {
-            throw new Error("API key not supplied.");
-        } else if (apiKey && !testingMode) {
-            this.app = new Clarifai.App({ // Create a Clarifai App instance
-                apiKey
-            });
-        }
+    constructor(apiKey) {
+        this.app = new Clarifai.App({ // Create a Clarifai App instance
+            apiKey
+        });
     }
 
-    dataParser(data) { dataParser(data) }
+    dataParser(data) { dataParser(data); }
 
     /**
      * Predict an image's NSFWness.
