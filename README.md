@@ -24,11 +24,15 @@ function handleResult(result) {
     }
 }
 
-nsfai.predict("https://example.com/example.png", handleResult); // URL
+function handleError(error) {
+    console.error(error);
+}
+
+nsfai.predict("https://example.com/example.png").then(handleResult).catch(handleError); // URL
 // or //
-nsfai.predict("data:image/png;base64,dGhpc2lzbm90YW5pbWFnZQ==", handleResult); // Data URL
+nsfai.predict("data:image/png;base64,dGhpc2lzbm90YW5pbWFnZQ==").then(handleResult).catch(handleError); // Data URL
 // or //
-nsfai.predict("dGhpc2lzbm90YW5pbWFnZQ==", handleResult); // Base64
+nsfai.predict("dGhpc2lzbm90YW5pbWFnZQ==", handleResult).then(handleResult).catch(handleError); // Base64
 ```
 
 # Setup
@@ -86,14 +90,13 @@ var NSFAI = require('nsfai');
 
 var nsfai = new NSFAI(process.env.MYAPP_CLARIFAI_KEY);
 
-nsfai.predict("https://example.com/image.png", function(error, result) {
-    if (err) { // If an error happened:
-        throw err; // Throw it and exit.
-    }
+nsfai.predict("https://example.com/image.png").then(function(result) {
     if (result.sfw) { // If the result is safe for work:
         console.log(`This image is safe for work, with a confidence of ${result.confidence}!`);
     } else { // If the result is not safe for work:
         console.log(`This image is not safe for work, with a confidence of ${result.confidence}!`);
     }
-})
+}).catch(function(error) {
+    console.error(error); // Print the error to the console.
+});
 ```
