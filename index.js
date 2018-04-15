@@ -30,28 +30,31 @@ class nsfai {
      * @param {nsfai~predictCallback} cb Your callback
      */
     predict(data, cb, options) {
-        try {
-            if (!options) {
-                options = {};
-            }
-            var _options = Object.assign({
-                video: false
-            }, options);
-            var dataObject = dataParser(data);
-            this.app.models.predict(Clarifai.NSFW_MODEL, dataObject, { video: options.video || dataObject.video }).then(
-                function(response) {
-                    cb(null, {
-                        sfw: response.outputs[0].data.concepts[0].name === "sfw",
-                        confidence: response.outputs[0].data.concepts[0].value // confidence (0-1) about the result
-                    });
-                },
-                function (err) {
-                    cb(err, null);
+        var app = this.app;
+        return new Promise(function(resolve, reject) {
+            try {
+                if (!options) {
+                    options = {};
                 }
-            );
-        } catch(err) {
-            cb(err, null);
-        }
+                var _options = Object.assign({
+                    video: false
+                }, options);
+                var dataObject = dataParser(data);
+                app.models.predict(Clarifai.NSFW_MODEL, dataObject, { video: options.video || dataObject.video }).then(
+                    function(response) {
+                        resolve({
+                            sfw: response.outputs[0].data.concepts[0].name === "sfw",
+                            confidence: response.outputs[0].data.concepts[0].value // confidence (0-1) about the result
+                        });
+                    },
+                    function (err) {
+                        reject(err);
+                    }
+                );
+            } catch(err) {
+                reject(err);
+            }
+        });
     }
 }
 
