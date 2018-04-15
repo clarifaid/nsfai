@@ -30,21 +30,24 @@ class nsfai {
      * @param {nsfai~predictCallback} cb Your callback
      */
     predict(data, cb) {
-        try {
-            this.app.models.predict(Clarifai.NSFW_MODEL, dataParser(data)).then(
-                function(response) {
-                    cb(null, {
-                        sfw: response.outputs[0].data.concepts[0].name === "sfw",
-                        confidence: response.outputs[0].data.concepts[0].value // confidence (0-1) about the result
-                    });
-                },
-                function (err) {
-                    cb(err, null);
-                }
-            );
-        } catch(err) {
-            cb(err, null);
-        }
+        var app = this.app;
+        return new Promise(function(resolve, reject) {
+            try {
+                app.models.predict(Clarifai.NSFW_MODEL, dataParser(data)).then(
+                    function(response) {
+                        resolve({
+                            sfw: response.outputs[0].data.concepts[0].name === "sfw",
+                            confidence: response.outputs[0].data.concepts[0].value // confidence (0-1) about the result
+                        });
+                    },
+                    function (err) {
+                        reject(err);
+                    }
+                );
+            } catch(err) {
+                reject(err);
+            }
+        });
     }
 }
 
