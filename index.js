@@ -29,11 +29,18 @@ class nsfai {
      * @param {string} data Your URL/Data URL/Base64 string
      * @param {nsfai~predictCallback} cb Your callback
      */
-    predict(data, cb) {
+    predict(data, cb, options) {
         var app = this.app;
         return new Promise(function(resolve, reject) {
             try {
-                app.models.predict(Clarifai.NSFW_MODEL, dataParser(data)).then(
+                if (!options) {
+                    options = {};
+                }
+                var _options = Object.assign({
+                    video: false
+                }, options);
+                var dataObject = dataParser(data);
+                app.models.predict(Clarifai.NSFW_MODEL, dataObject, { video: options.video || dataObject.video }).then(
                     function(response) {
                         resolve({
                             sfw: response.outputs[0].data.concepts[0].name === "sfw",
