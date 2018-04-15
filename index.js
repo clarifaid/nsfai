@@ -29,7 +29,7 @@ class nsfai {
      * @param {string} data Your URL/Data URL/Base64 string
      * @param {nsfai~predictCallback} cb Your callback
      */
-    predict(data, cb, options) {
+    predict(data, options) {
         var app = this.app;
         return new Promise(function(resolve, reject) {
             try {
