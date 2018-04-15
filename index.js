@@ -8,15 +8,20 @@ var dataParser = require("./lib/dataparser");
  */
 
 /**
+ * @typedef PredictOptions
+ * @property {boolean} video Is this a video?
+ */
+
+/**
  * @callback nsfai~predictCallback
- * @param {Error} error The error that happened while predicting
- * @param {Prediction} result The prediction
+ * @param {Error} error The error that happened while predicting.
+ * @param {Prediction} result The prediction.
  */
 
 class nsfai {
     /**
-     * Create an nsfai instance
-     * @param {string} apiKey Your Clarifai API key
+     * Creates an nsfai instance.
+     * @param {string} apiKey Your Clarifai API key.
      */
     constructor(apiKey) {
         this.app = new Clarifai.App({ // Create a Clarifai App instance
@@ -26,8 +31,8 @@ class nsfai {
 
     /**
      * Predict an image's NSFWness.
-     * @param {string} data Your URL/Data URL/Base64 string
-     * @param {nsfai~predictCallback} cb Your callback
+     * @param {string} data Your URL/Data URL/Base64 string.
+     * @param {PredictOptions} options Prediction options.
      */
     predict(data, options) {
         var app = this.app;
