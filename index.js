@@ -13,9 +13,9 @@ var dataParser = require("./lib/dataparser");
  */
 
 /**
- * @callback nsfai~predictCallback
- * @param {Error} error The error that happened while predicting.
- * @param {Prediction} result The prediction.
+ * @promise PredictPromise
+ * @fulfill {(Prediction|Prediction[])} The prediction's result.
+ * @reject {Object} The error.
  */
 
 class nsfai {
@@ -33,6 +33,7 @@ class nsfai {
      * Predict an image's NSFWness.
      * @param {string} data Your URL/Data URL/Base64 string.
      * @param {PredictOptions} options Prediction options.
+     * @returns {PredictPromise}
      */
     predict(data, options) {
         var app = this.app;
@@ -45,17 +46,30 @@ class nsfai {
                     video: false
                 }, options);
                 var dataObject = dataParser(data);
-                app.models.predict(Clarifai.NSFW_MODEL, dataObject, { video: options.video || dataObject.video }).then(
+                var isVideo = options.video || dataObject.video;
+                app.models.predict(Clarifai.NSFW_MODEL, dataObject, { video: isVideo }).then(
                     function(response) {
-                        resolve({
-                            sfw: response.outputs[0].data.concepts[0].name === "sfw",
-                            confidence: response.outputs[0].data.concepts[0].value // confidence (0-1) about the result
-                        });
+                        if (isVideo) {
+                            var resultArray = response.outputs[0].data.frames.map(function(x) {
+                                return {
+                                    sfw: x.data.concepts[0].name === "sfw",
+                                    confidence: x.data.concepts[0].value
+                                }
+                            });
+                            resolve(resultArray);
+                        } else {
+                            resolve({
+                                sfw: response.outputs[0].data.concepts[0].name === "sfw",
+                                confidence: response.outputs[0].data.concepts[0].value // confidence (0-1) about the result
+                            });
+                        }
                     },
                     function (err) {
                         reject(err);
                     }
-                );
+                ).catch(function (err) {
+                    reject(err);
+                });
             } catch(err) {
                 reject(err);
             }
