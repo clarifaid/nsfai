@@ -1,4 +1,4 @@
-# nsfai [![Codacy Badge](https://api.codacy.com/project/badge/Grade/804e9bc29c07420aa682247ed0618839)](https://www.codacy.com/app/moriczgergo/nsfai?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bbyjins/nsfai&amp;utm_campaign=Badge_Grade) [![npm](https://img.shields.io/npm/dt/nsfai.svg)](https://www.npmjs.com/package/nsfai) [![Discord](https://img.shields.io/discord/434373420814172169.svg)](https://discord.gg/eZCSCb3)
+# nsfai [![Codacy Badge](https://api.codacy.com/project/badge/Grade/804e9bc29c07420aa682247ed0618839)](https://www.codacy.com/app/moriczgergo/nsfai?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bbyjins/nsfai&amp;utm_campaign=Badge_Grade) [![Build Status](https://travis-ci.org/bbyjins/nsfai.svg?branch=master)](https://travis-ci.org/bbyjins/nsfai) [![npm](https://img.shields.io/npm/dt/nsfai.svg)](https://www.npmjs.com/package/nsfai) [![Discord](https://img.shields.io/discord/434373420814172169.svg)](https://discord.gg/eZCSCb3)
 
 ![nsfai banner logo](https://bbyjins.skiilaa.me/img/nsfai/tinybanner.png)
 
