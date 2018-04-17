@@ -4,7 +4,8 @@
   "description": "A simplified wrapper around Clarifai's NSFW detection.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "travisTest": "npm test && node ./travis-test/image.js && node ./travis-test/video.js"
   },
   "repository": {
     "type": "git",
