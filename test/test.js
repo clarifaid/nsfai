@@ -1,3 +1,5 @@
+// dataParser & testMIMEType test script for use with Mocha
+
 var expect = require("chai").expect;
 
 var dataParser = require("../lib/dataparser");
