@@ -54,7 +54,7 @@ class nsfai {
                                 return {
                                     sfw: x.data.concepts[0].name === "sfw",
                                     confidence: x.data.concepts[0].value
-                                }
+                                };
                             });
                             resolve(resultArray);
                         } else {
